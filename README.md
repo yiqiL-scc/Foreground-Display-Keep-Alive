@@ -1,4 +1,4 @@
-# Foreground Display Keep Alive  
+# Foreground Display Keep Alive （特定程序前台防暗屏）
 Prevent display sleep only when a specific application is in the foreground.
 
 [中文说明 → README.zh-CN.md](README.zh-CN.md)
