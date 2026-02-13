@@ -1,81 +1,95 @@
-# Foreground Display Keep Alive （特定程序前台防暗屏）
-Prevent display sleep only when a specific application is in the foreground.
+# Foreground-Display-Keep-Alive （特定程序前台防暗屏）
 
-[中文说明 → README.zh-CN.md](README.zh-CN.md)
-
+仅在指定程序处于前台时阻止显示器息屏。
 
 
+## 注意 Notes
+目前界面主要为中文版本，欢迎扩展为多语言版本或改进本地化支持。
 
-## Overview
+Currently the user interface is primarily available in Chinese. Contributions to extend it into a multi-language version are very welcome.
 
-ForegroundDisplayKeepAlive keeps your screen awake **only while a specified application is actively in the foreground**.  
-Once the target program moves to the background, normal system sleep behavior is immediately restored.
+以下提供一个简要的界面标注说明，方便阅读。
 
-This tool does **not** modify power plans or permanently block sleep.  
-It simply applies display keep-alive conditionally.
+A brief annotated reference is provided below for easier understanding of the interface.
 
-
-## Use Cases
-
-- Remote desktop / remote control sessions  
-- Monitoring dashboards  
-- Presentation software  
-- Media playback tools  
-- Any workflow requiring screen-on only during active use  
+<img width="1174" height="805" alt="image" src="https://github.com/user-attachments/assets/24aac567-3b9d-4084-948e-08050a55d072" />
 
 
-## Key Features
 
-- Foreground-only display keep-alive  
-- Immediate restore when target loses focus  
-- Tray-based lightweight execution  
-- Single-instance protection  
-- Adjustable refresh interval  
-- One-click “Set to current foreground app”  
-- Optional startup support  
+## 项目简介
+
+Foreground-Display-Keep-Alive 仅在指定程序处于前台活动状态时阻止显示器息屏。
+
+当目标程序退到后台后，系统将立即恢复默认的息屏行为。
+
+本工具不会修改系统电源计划，也不会永久阻止休眠，仅在需要时临时保持显示器常亮。
 
 
-## How It Works (Brief)
+## 适用场景
 
-It monitors the current foreground window and calls:
+* 远程控制 / 远程桌面
+* 实时监控面板
+* 演示展示
+* 媒体播放软件
+* 仅在特定程序前台时需要保持屏幕常亮的工作流程
+
+
+## 主要功能
+
+* 仅在目标程序前台时防暗屏
+* 目标程序失去焦点后立即恢复系统默认行为
+* 托盘常驻运行
+* 单实例保护
+* 可调整刷新间隔
+* 一键设为当前前台程序
+* 可选开机启动支持
+
+## 工作原理（简述）
+
+程序监测当前前台窗口，当检测到目标程序处于前台时调用：
 
 ```
-
 SetThreadExecutionState(ES_DISPLAY_REQUIRED)
+```
 
-````
+否则恢复为：
 
-only when the target application is active.
+```
+ES_CONTINUOUS
+```
 
+## 构建方式
 
-## Build
+需要 .NET 8 SDK。
 
-Requires .NET 8 SDK.
+下载地址：
 
-https://dotnet.microsoft.com/en-us/download/dotnet/8.0 and choose "SDK 8.x.xxx"
+[https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+选择 “SDK 8.x.xxx” 版本。
+
+构建命令：
 
 ```bash
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
-````
+```
+
+## 说明
+
+* 仅支持 Windows
+* 不联网
+* 不收集数据
+* 不修改系统电源计划
 
 
-## Notes
+## 关于本项目
 
-* Windows only
-* No telemetry
-* No network activity
-* No modification of system power plans
+这是一个个人小工具项目，在 ChatGPT 的帮助下完成开发与测试。
+作者并非专业软件开发人员，但程序已在实际使用中验证可用。
 
-
-## About This Project
-
-This is a small personal utility created with the help of ChatGPT.
-The author is not a professional software developer, but the tool is functional and tested in practical use.
-
-Feedback, suggestions, and improvements are welcome!
+欢迎使用，也欢迎提出建议或改进意见。
 
 
-## License
+## 开源协议
 
 MIT License
 
