@@ -1,4 +1,4 @@
-# ForegroundDisplayKeepAlive  
+# Foreground Display Keep Alive  
 Prevent display sleep only when a specific application is in the foreground.
 
 [中文说明 → README.zh-CN.md](README.zh-CN.md)
